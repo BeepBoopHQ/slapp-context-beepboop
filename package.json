@@ -1,0 +1,33 @@
+{
+  "name": "slapp-context-beepboop",
+  "version": "0.0.1",
+  "description": "Slapp context lookup module for running on Beep Boop",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run unit",
+    "lint": "standard",
+    "unit": "ava --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeepBoopHQ/slapp-context-beepboop.git"
+  },
+  "keywords": [
+    "Slack",
+    "BeepBoop",
+    "bots",
+    "chat",
+    "slapp"
+  ],
+  "author": "Brad Harris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BeepBoopHQ/slapp-context-beepboop/issues"
+  },
+  "homepage": "https://github.com/BeepBoopHQ/slapp-context-beepboop#readme",
+  "devDependencies": {
+    "standard": "^7.1.2",
+    "ava": "^0.15.2",
+    "sinon": "^1.17.5"
+  }
+}
