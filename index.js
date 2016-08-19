@@ -24,7 +24,9 @@ module.exports = () => {
       // additional bot and team meta-data
       bot_user_name: req.headers['bb-slackbotusername'],
       team_name: req.headers['bb-slackteamname'],
-      team_domain: req.headers['bb-slackteamdomain']
+      team_domain: req.headers['bb-slackteamdomain'],
+      // Beep Boop specific ID for App/Team association
+      team_resource_id: req.headers['bb-slackteamresourceid']
     })
 
     next()
