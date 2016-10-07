@@ -26,7 +26,10 @@ module.exports = () => {
       team_name: req.headers['bb-slackteamname'],
       team_domain: req.headers['bb-slackteamdomain'],
       // Beep Boop specific ID for App/Team association
-      team_resource_id: req.headers['bb-slackteamresourceid']
+      team_resource_id: req.headers['bb-slackteamresourceid'],
+      // Incoming webhook props
+      incoming_webhook_url: req.headers['bb-incomingwebhookurl'],
+      incoming_webhook_channel: req.headers['bb-incomingwebhookchannel']
     })
 
     next()
