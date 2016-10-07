@@ -12,6 +12,8 @@ This is an implementation of a context middleware function for
 + `bot_user_name`
 + `team_name`
 + `team_domain`
++ `incoming_webhook_url`
++ `incoming_webhook_channel`
 
 ## Install
 
