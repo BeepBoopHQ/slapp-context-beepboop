@@ -1,6 +1,6 @@
 {
   "name": "slapp-context-beepboop",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Slapp context lookup module for running on Beep Boop",
   "main": "index.js",
   "scripts": {
