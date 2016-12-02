@@ -5,7 +5,7 @@ const sinon = require('sinon')
 const LookupTokens = require('../index')
 
 test.cb('LookupToken()', t => {
-  t.plan(9)
+  t.plan(10)
 
   let mw = LookupTokens()
   let headers = getMockHeaders()
@@ -23,6 +23,7 @@ test.cb('LookupToken()', t => {
     t.is(req.slapp.meta.team_domain, headers['bb-slackteamdomain'])
     t.is(req.slapp.meta.incoming_webhook_url, headers['bb-incomingwebhookurl'])
     t.is(req.slapp.meta.incoming_webhook_channel, headers['bb-incomingwebhookchannel'])
+    t.is(typeof req.slapp.meta.config, 'object')
     t.end()
   })
 })
@@ -43,6 +44,25 @@ test('LookupToken() error header', t => {
   })
 
   t.true(sendStub.calledOnce)
+})
+
+test.cb('LookupToken() team config headers', t => {
+  t.plan(2)
+
+  let mw = LookupTokens()
+  let headers = getMockHeaders({
+    'bb-config-custom_token': 'customtokenvalue',
+    'bb-config-custom_token2': 'customtoken2value'
+  })
+
+  let req = getMockReq({ headers })
+  let res = getMockRes()
+
+  mw(req, res, () => {
+    t.is(req.slapp.meta.config.custom_token, 'customtokenvalue')
+    t.is(req.slapp.meta.config.custom_token2, 'customtoken2value')
+    t.end()
+  })
 })
 
 test('LookupToken() error header w/ logger', t => {
