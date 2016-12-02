@@ -14,6 +14,7 @@ This is an implementation of a context middleware function for
 + `team_domain`
 + `incoming_webhook_url`
 + `incoming_webhook_channel`
++ `config` (team-specific config)
 
 ## Install
 
