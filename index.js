@@ -36,7 +36,7 @@ module.exports = () => {
     req.slapp.meta.config = Object.keys(req.headers)
       .filter(header => /^bb-config-/.test(header))
       .reduce((config, header) => {
-        let name = header.substr('bb-config-'.length)
+        let name = header.substr('bb-config-'.length).toUpperCase()
         config[name] = req.headers[header]
         return config
       }, {})

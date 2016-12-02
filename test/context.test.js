@@ -59,8 +59,8 @@ test.cb('LookupToken() team config headers', t => {
   let res = getMockRes()
 
   mw(req, res, () => {
-    t.is(req.slapp.meta.config.custom_token, 'customtokenvalue')
-    t.is(req.slapp.meta.config.custom_token2, 'customtoken2value')
+    t.is(req.slapp.meta.config['CUSTOM_TOKEN'], 'customtokenvalue')
+    t.is(req.slapp.meta.config['CUSTOM_TOKEN2'], 'customtoken2value')
     t.end()
   })
 })
