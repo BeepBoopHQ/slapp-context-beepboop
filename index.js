@@ -32,6 +32,15 @@ module.exports = () => {
       incoming_webhook_channel: req.headers['bb-incomingwebhookchannel']
     })
 
+    // Add custom config
+    req.slapp.meta.config = Object.keys(req.headers)
+      .filter(header => /^bb-config-/.test(header))
+      .reduce((config, header) => {
+        let name = header.substr('bb-config-'.length).toUpperCase()
+        config[name] = req.headers[header]
+        return config
+      }, {})
+
     next()
   }
 }
