@@ -7,6 +7,7 @@ This is an implementation of a context middleware function for
 
 + `app_token`
 + `app_user_id`
++ `app_bot_id`
 + `bot_token`
 + `bot_user_id`
 + `bot_user_name`
