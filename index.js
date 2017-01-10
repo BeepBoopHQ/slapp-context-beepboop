@@ -17,6 +17,8 @@ module.exports = () => {
       app_token: req.headers['bb-slackaccesstoken'],
       // userID for the user who install ed the app
       app_user_id: req.headers['bb-slackuserid'],
+      // botID for the Slack App (different from the bots userID)
+      app_bot_id: req.headers['bb-slackbotid'],
       // token for a bot user of the app
       bot_token: req.headers['bb-slackbotaccesstoken'],
       // userID of the bot user of the app

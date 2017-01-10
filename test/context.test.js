@@ -5,7 +5,7 @@ const sinon = require('sinon')
 const LookupTokens = require('../index')
 
 test.cb('LookupToken()', t => {
-  t.plan(10)
+  t.plan(11)
 
   let mw = LookupTokens()
   let headers = getMockHeaders()
@@ -16,6 +16,7 @@ test.cb('LookupToken()', t => {
   mw(req, res, () => {
     t.is(req.slapp.meta.app_token, headers['bb-slackaccesstoken'])
     t.is(req.slapp.meta.app_user_id, headers['bb-slackuserid'])
+    t.is(req.slapp.meta.app_bot_id, headers['bb-slackbotid'])
     t.is(req.slapp.meta.bot_token, headers['bb-slackbotaccesstoken'])
     t.is(req.slapp.meta.bot_user_id, headers['bb-slackbotuserid'])
     t.is(req.slapp.meta.bot_user_name, headers['bb-slackbotusername'])
@@ -129,6 +130,7 @@ function getMockHeaders (headers) {
   return Object.assign({
     'bb-slackaccesstoken': 'slackaccesstoken',
     'bb-slackuserid': 'slackuserid',
+    'bb-slackbotid': 'slackbotid',
     'bb-slackbotaccesstoken': 'slackbotaccesstoken',
     'bb-slackbotuserid': 'slackbotuserid',
     'bb-slackbotusername': 'slackbotusername',
