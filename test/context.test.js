@@ -29,7 +29,7 @@ test.cb('LookupToken()', t => {
   })
 })
 
-test('LookupToken() error header', t => {
+test.cb('LookupToken() error header', t => {
   let mw = LookupTokens()
   let headers = getMockHeaders({
     'bb-error': 'kaboom'
@@ -38,13 +38,10 @@ test('LookupToken() error header', t => {
   let req = getMockReq({ headers })
   let res = getMockRes()
 
-  let sendStub = sinon.stub(res, 'send')
-
   mw(req, res, () => {
-    t.fail()
+    t.is(req.slapp.meta.error, 'kaboom')
+    t.end()
   })
-
-  t.true(sendStub.calledOnce)
 })
 
 test.cb('LookupToken() team config headers', t => {
@@ -64,30 +61,6 @@ test.cb('LookupToken() team config headers', t => {
     t.is(req.slapp.meta.config['CUSTOM_TOKEN2'], 'customtoken2value')
     t.end()
   })
-})
-
-test('LookupToken() error header w/ logger', t => {
-  let logger = {
-    error: () => {}
-  }
-  let mw = LookupTokens({ logger })
-  let headers = getMockHeaders({
-    'bb-error': 'kaboom'
-  })
-
-  let req = getMockReq({ headers })
-  let res = getMockRes()
-
-  let sendStub = sinon.stub(res, 'send')
-  let logStub = sinon.stub(console, 'error')
-
-  mw(req, res, () => {
-    t.fail()
-  })
-
-  t.true(sendStub.calledOnce)
-  t.true(logStub.calledOnce)
-  console.error.restore()
 })
 
 test('LookupToken() missing req.slapp', t => {
