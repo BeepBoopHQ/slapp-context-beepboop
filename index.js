@@ -3,11 +3,6 @@
 // Enrich `req.slapp.meta` with context parsed from Beep Boop headers
 module.exports = () => {
   return function contextMiddleware (req, res, next) {
-    if (req.headers['bb-error']) {
-      console.error('Event: Error: ' + req.headers['bb-error'])
-      return res.send(req.headers['bb-error'])
-    }
-
     if (!req.slapp) {
       return res.send('Missing req.slapp')
     }
@@ -31,7 +26,8 @@ module.exports = () => {
       team_resource_id: req.headers['bb-slackteamresourceid'],
       // Incoming webhook props
       incoming_webhook_url: req.headers['bb-incomingwebhookurl'],
-      incoming_webhook_channel: req.headers['bb-incomingwebhookchannel']
+      incoming_webhook_channel: req.headers['bb-incomingwebhookchannel'],
+      error: req.headers['bb-error']
     })
 
     // Add custom config
